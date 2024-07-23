@@ -1,0 +1,144 @@
+name: barv
+description: "A new Flutter package from barv."
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  #  Core
+  flutter:
+    sdk: flutter
+  collection: ^1.18.0
+  firebase_crashlytics: ^4.0.3
+  timezone: ^0.9.4
+
+  #  Data Structure
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+  rxdart: ^0.27.7
+
+  #  Dependency Injection
+  get_it: ^7.7.0
+  injectable: ^2.4.2
+
+  #  Diagnostic
+  fimber: ^0.7.0
+
+  #  Network
+  dio: ^5.5.0+1
+  dio_cache_interceptor: ^3.5.0
+  retrofit: ^4.1.0
+  http: ^1.2.2
+
+  #  Platform
+  device_info_plus: ^10.1.0
+  file_picker: ^8.0.6
+  flutter_jailbreak_detection: ^1.10.0
+  image_picker: ^1.1.2
+  package_info_plus: ^8.0.0
+  permission_handler: ^11.3.1
+
+  #  Routing
+  auto_route: ^8.3.0
+
+  #  Security
+  encrypt: ^5.0.3
+
+  #  State Management
+  bloc: ^8.1.4
+  flutter_bloc: ^8.1.6
+  hydrated_bloc: ^9.1.5
+
+  #  Storage
+  shared_preferences: ^2.2.3
+
+  #  UI
+  animations: ^2.0.11
+  cached_network_image: ^3.3.1
+  dropdown_button2: ^2.3.9
+  flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.0.10+1
+  google_maps_flutter: ^2.7.0
+  lottie: ^3.1.2
+  pull_to_refresh_flutter3: ^2.0.2
+  webview_flutter: ^4.8.0
+
+  #  Utilities
+  dartx: ^1.2.0
+  equatable: ^2.0.5
+  intl: ^0.19.0
+  ios_utsname_ext: ^2.3.0
+  logger: ^2.4.0
+  network_inspector: ^1.1.1
+  ntp: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Build generator
+  build_runner: ^2.4.11
+  flutter_gen_runner: ^5.6.0
+  auto_route_generator: ^8.1.0
+
+  # Data Structure
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
+
+  # Dependency Injection
+  injectable_generator: ^2.6.1
+
+  # Network
+  retrofit_generator: ^8.1.2
+
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icon/systems/
+    - assets/icon/systems/custom/
+    - assets/lottie/
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Thin.ttf
+          weight: 200
+        - asset: assets/fonts/Roboto/Roboto-ThinItalic.ttf
+          weight: 200
+        - asset: assets/fonts/Roboto/Roboto-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Roboto/Roboto-LightItalic.ttf
+          weight: 300
+        - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto/Roboto-Italic.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto/Roboto-MediumItalic.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto/Roboto-Bold.ttf
+          weight: 600
+        - asset: assets/fonts/Roboto/Roboto-BoldItalic.ttf
+          weight: 600
+        - asset: assets/fonts/Roboto/Roboto-Black.ttf
+          weight: 700
+        - asset: assets/fonts/Roboto/Roboto-BlackItalic.ttf
+          weight: 700
+    - family: GothamRounded
+      fonts:
+        - asset: assets/fonts/GothamRounded/GothamRounded-Light.ttf
+          weight: 300
+        - asset: assets/fonts/GothamRounded/GothamRounded-LightItalic.ttf
+          weight: 300
+        - asset: assets/fonts/GothamRounded/GothamRounded-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/GothamRounded/GothamRounded-MediumItalic.ttf
+          weight: 500
+        - asset: assets/fonts/GothamRounded/GothamRounded-Bold.ttf
+          weight: 600
