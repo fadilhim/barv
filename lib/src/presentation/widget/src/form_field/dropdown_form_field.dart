@@ -5,19 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 /// A data class to represent the category.
-class BarvDropdownValue {
+class BarvDropdownValue<T> {
   /// Creates the category.
   const BarvDropdownValue({
     required this.id,
     required this.name,
     this.icon,
     this.code,
+    this.additionalData,
   });
 
-  final int id;
+  final String id;
   final String name;
   final String? icon;
   final String? code;
+  final T? additionalData;
 
   @override
   bool operator ==(dynamic other) =>
@@ -137,7 +139,7 @@ class _BarvDropDownFormFieldState extends State<BarvDropDownFormField> {
                 key: Key(item.id.toString()),
                 value: item,
                 child: _BuildItemContainer(
-                  selected: item.name == widget.controller._textController.text,
+                  selected: item.id == widget.controller.value?.id,
                   text: item.name,
                   icon: item.icon,
                 ),
@@ -195,6 +197,11 @@ class DropdownController extends ValueNotifier<BarvDropdownValue?> {
   DropdownController({BarvDropdownValue? initialValue}) : super(initialValue);
 
   final TextEditingController _textController = TextEditingController();
+
+  void clear() {
+    _textController.text = '';
+    this.value = null;
+  }
 
   @override
   void dispose() {

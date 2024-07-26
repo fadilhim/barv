@@ -4,6 +4,7 @@ export 'package:bloc/bloc.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:collection/collection.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
+export 'package:flutter_secure_storage/flutter_secure_storage.dart';
 export 'package:fimber/fimber.dart';
 export 'package:google_maps_flutter/google_maps_flutter.dart';
 export 'package:hydrated_bloc/hydrated_bloc.dart';
