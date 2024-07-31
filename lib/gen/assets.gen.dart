@@ -668,8 +668,11 @@ class $AssetsIconSystemsCustomGen {
   /// File path: assets/icon/systems/custom/done.svg
   String get done => 'assets/icon/systems/custom/done.svg';
 
+  /// File path: assets/icon/systems/custom/time.svg
+  String get time => 'assets/icon/systems/custom/time.svg';
+
   /// List of all assets
-  List<String> get values => [done];
+  List<String> get values => [done, time];
 }
 
 class Assets {

@@ -54,6 +54,16 @@ class _BarvDateFormFieldState extends State<BarvDateFormField> {
   DateTime? selectedDate;
 
   @override
+  initState() {
+    super.initState();
+    if (widget.controller.value != null) {
+      widget.controller.controller.text = widget.dateFormat != null
+          ? widget.dateFormat!.format(widget.controller.value!)
+          : widget.controller.value!.ddMMMMyyyy;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isLightMode = theme.brightness == Brightness.light;

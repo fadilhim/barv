@@ -3,6 +3,7 @@ export 'package:auto_route/auto_route.dart';
 export 'package:bloc/bloc.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:collection/collection.dart';
+export 'package:file_picker/file_picker.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter_secure_storage/flutter_secure_storage.dart';
 export 'package:fimber/fimber.dart';

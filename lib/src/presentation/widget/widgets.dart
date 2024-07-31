@@ -3,6 +3,7 @@ export 'package:barv/src/presentation/widget/src/card/shadow_card.dart';
 export 'package:barv/src/presentation/widget/src/dialog/popover_bottomsheet.dart';
 export 'package:barv/src/presentation/widget/src/dialog/simple_dialog.dart';
 export 'package:barv/src/presentation/widget/src/form_field/text_form_field.dart';
+export 'package:barv/src/presentation/widget/src/form_field/time_form_field.dart';
 export 'package:barv/src/presentation/widget/src/form_field/date_form_field.dart';
 export 'package:barv/src/presentation/widget/src/form_field/dropdown_form_field.dart';
 export 'package:barv/src/presentation/widget/src/snackbar.dart';

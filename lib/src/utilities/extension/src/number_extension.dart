@@ -15,6 +15,6 @@ class BarvNumber {
 
 extension BarvNumFormat on num {
   String toCompactFormat({String? locale}) {
-    return NumberFormat.compact(locale: locale).format(this);
+    return NumberFormat.compact(locale: locale ?? 'en').format(this);
   }
 }
