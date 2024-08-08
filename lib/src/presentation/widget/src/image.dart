@@ -8,14 +8,14 @@ class BarvImage extends StatelessWidget {
     required this.height,
     required this.width,
     this.fit,
-    this.errorImagePath,
+    this.errorImage,
   });
 
   final String url;
   final double height;
   final double width;
   final BoxFit? fit;
-  final String? errorImagePath;
+  final Widget? errorImage;
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +36,10 @@ class BarvImage extends StatelessWidget {
         );
       },
       errorBuilder: (context, exception, stackTrace) {
-        if (errorImagePath == null) {
+        if (errorImage == null) {
           return const SizedBox.shrink();
         }
-        return Image.asset(
-          errorImagePath!,
-          fit: BoxFit.cover,
-          height: height,
-          width: double.infinity,
-        );
+        return errorImage!;
       },
     );
   }
