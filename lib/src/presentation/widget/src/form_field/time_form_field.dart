@@ -69,22 +69,18 @@ class _DatePickerFormFieldState extends State<BarvTimeFormField> {
     final isLightMode = Theme.of(context).brightness == Brightness.light;
 
     return BarvFormField(
-      onTap: () async {
-        final selectedDate = await _showDialog();
-        if (selectedDate != null) {
-          final selectedTime = TimeOfDay.fromDateTime(selectedDate);
-          widget.onTimeSelected?.call();
-          widget.controller.controller.text = selectedTime.timeFormat;
-          widget.controller.value = selectedTime;
-        }
-      },
+      onTap: _onSelect,
       controller: widget.controller.controller,
       readOnly: true,
       labelText: widget.labelText,
       hintText: '--:--',
-      innerSuffix: widget.innerSuffix ?? SvgPicture.asset(
-        Assets.icon.systems.custom.time,
-        colorFilter: ColorFilter.mode(isLightMode ? BarvColor.analgesic : BarvColor.albin, BlendMode.srcIn),
+      innerSuffix: InkWell(
+        onTap: _onSelect,
+        splashFactory: NoSplash.splashFactory,
+        child: widget.innerSuffix ?? SvgPicture.asset(
+          Assets.icon.systems.custom.time,
+          colorFilter: ColorFilter.mode(isLightMode ? BarvColor.analgesic : BarvColor.albin, BlendMode.srcIn),
+        ),
       ),
       validator: widget.mandatory ? BarvValidator.required : null,
       autovalidateMode: widget.autoValidateMode ?? AutovalidateMode.disabled,
@@ -92,6 +88,9 @@ class _DatePickerFormFieldState extends State<BarvTimeFormField> {
   }
 
   Future<DateTime?> _showDialog() async {
+    final theme = Theme.of(context);
+    final isLightMode = theme.brightness == Brightness.light;
+
     final res = await showCupertinoModalPopup<DateTime?>(
       context: context,
       builder: (BuildContext context) => Container(
@@ -103,19 +102,68 @@ class _DatePickerFormFieldState extends State<BarvTimeFormField> {
         color: CupertinoColors.systemBackground.resolveFrom(context),
         child: SafeArea(
           top: false,
-          child: CupertinoDatePicker(
-            initialDateTime: time,
-            mode: CupertinoDatePickerMode.time,
-            use24hFormat: true,
-            onDateTimeChanged: (DateTime newTime) {
-              setState(() => time = newTime);
-            },
+          child: Container(
+            height: MediaQuery.of(context).copyWith().size.height / 3,
+            padding: const EdgeInsets.all(4.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 3),
+                Center(
+                  child: Container(
+                    width: 40,
+                    height: 5,
+                    decoration: BoxDecoration(
+                      color: BarvColor.iron,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Material(
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).maybePop(time);
+                        },
+                        child: Text(
+                          'Confirm',
+                          style:
+                          BarvTypography.text(color: theme.primaryColor),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: CupertinoDatePicker(
+                    initialDateTime: time,
+                    mode: CupertinoDatePickerMode.time,
+                    use24hFormat: true,
+                    onDateTimeChanged: (DateTime newTime) {
+                      setState(() => time = newTime);
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
 
     return time;
+  }
+
+  Future<void> _onSelect() async {
+    final selectedDate = await _showDialog();
+    if (selectedDate != null) {
+      final selectedTime = TimeOfDay.fromDateTime(selectedDate);
+      widget.onTimeSelected?.call();
+      widget.controller.controller.text = selectedTime.timeFormat;
+      widget.controller.value = selectedTime;
+    }
   }
 }
 

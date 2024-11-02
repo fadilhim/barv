@@ -22,16 +22,16 @@ class BarvSimpleDialog extends StatefulWidget {
     this.notes,
   });
 
-  static void showDialog(
+  static Future<void> showDialog(
     BuildContext context, {
     required String title,
     required String message,
-    String confirmText = 'Ok, Barvt it',
+    String confirmText = 'OK',
     VoidCallback? onConfirm,
     Widget? image,
     List<DialogNoteContent>? notes,
   }) {
-    showModal<void>(
+    return showModal<void>(
       context: context,
       configuration:
           const FadeScaleTransitionConfiguration(barrierDismissible: false),

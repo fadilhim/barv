@@ -69,101 +69,120 @@ class _BarvDateFormFieldState extends State<BarvDateFormField> {
     final isLightMode = theme.brightness == Brightness.light;
 
     return BarvFormField(
-      onTap: () async {
-        final selectedTime = await showModalBottomSheet<DateTime?>(
-          context: context,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(20.0),
-            ),
-          ),
-          backgroundColor: BarvColor.albin,
-          isScrollControlled: false,
-          builder: (context) {
-            return SafeArea(
-              child: Container(
-                height: MediaQuery.of(context).copyWith().size.height / 3,
-                padding: const EdgeInsets.all(4.0),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 3),
-                    Center(
-                      child: Container(
-                        width: 40,
-                        height: 5,
-                        decoration: BoxDecoration(
-                          color: BarvColor.iron,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.of(context).maybePop(selectedDate);
-                          },
-                          child: Text(
-                            'Confirm',
-                            style:
-                                BarvTypography.text(color: theme.primaryColor),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: CupertinoDatePicker(
-                        mode: CupertinoDatePickerMode.date,
-                        onDateTimeChanged: (picked) {
-                          if (picked != selectedDate) {
-                            setState(() {
-                              selectedDate = picked;
-                            });
-                          }
-                        },
-                        initialDateTime: widget.controller.value ??
-                            widget.initialDate ??
-                            widget.firstDate ??
-                            TrustedDateTime.now(),
-                        minimumDate: widget.firstDate ?? TrustedDateTime.now(),
-                        maximumDate: widget.lastDate ??
-                            widget.firstDate ??
-                            TrustedDateTime.now(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        );
-        if (selectedTime != null) {
-          setState(() {
-            _isEnabled = true;
-          });
-          widget.controller.controller.text = widget.dateFormat != null
-              ? widget.dateFormat!.format(selectedTime)
-              : selectedTime.ddMMMMyyyy;
-          widget.controller.value = selectedTime;
-        }
-      },
+      onTap: _onSelect,
       controller: widget.controller.controller,
       readOnly: true,
       labelText: widget.labelText,
-      innerSuffix: SvgPicture.asset(
-        Assets.icon.systems.icDateFill,
-        colorFilter: ColorFilter.mode(
-            _isEnabled
-                ? theme.primaryColor
-                : isLightMode
-                    ? BarvColor.iron
-                    : BarvColor.albin,
-            BlendMode.srcIn),
+      innerSuffix: InkWell(
+        onTap: _onSelect,
+        splashFactory: NoSplash.splashFactory,
+        child: SvgPicture.asset(
+          Assets.icon.systems.icDateFill,
+          colorFilter: ColorFilter.mode(
+              _isEnabled
+                  ? theme.primaryColor
+                  : isLightMode
+                  ? BarvColor.iron
+                  : BarvColor.albin,
+              BlendMode.srcIn),
+        ),
       ),
       validator: widget.mandatory ? BarvValidator.required : null,
     );
+  }
+
+  Future<void> _onSelect() async {
+    final theme = Theme.of(context);
+
+    final selectedTime = await showModalBottomSheet<DateTime?>(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20.0),
+        ),
+      ),
+      backgroundColor: BarvColor.albin,
+      isScrollControlled: false,
+      builder: (context) {
+        return SafeArea(
+          child: Container(
+            height: MediaQuery.of(context).copyWith().size.height / 3,
+            padding: const EdgeInsets.all(4.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 3),
+                Center(
+                  child: Container(
+                    width: 40,
+                    height: 5,
+                    decoration: BoxDecoration(
+                      color: BarvColor.iron,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).maybePop(selectedDate);
+                      },
+                      child: Text(
+                        'Confirm',
+                        style:
+                        BarvTypography.text(color: theme.primaryColor),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.date,
+                    onDateTimeChanged: (picked) {
+                      if (picked != selectedDate) {
+                        setState(() {
+                          selectedDate = picked;
+                        });
+                      }
+                    },
+                    initialDateTime: widget.controller.value ??
+                        widget.initialDate ??
+                        widget.firstDate ??
+                        TrustedDateTime.now(),
+                    minimumDate: widget.firstDate ?? TrustedDateTime.now(),
+                    maximumDate: widget.lastDate ??
+                        widget.firstDate ??
+                        TrustedDateTime.now(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+    if (selectedTime != null) {
+      setState(() {
+        _isEnabled = true;
+      });
+      
+      widget.controller.value = selectedTime;
+      widget.controller.controller.text = widget.dateFormat != null
+          ? widget.dateFormat!.format(selectedTime)
+          : selectedTime.ddMMMMyyyy;
+    } else {
+      setState(() {
+        _isEnabled = true;
+      });
+      final now = DateTime.now();
+
+      widget.controller.value = now;
+      widget.controller.controller.text = widget.dateFormat != null
+          ? widget.dateFormat!.format(now)
+          : now.ddMMMMyyyy;
+    }
   }
 }
 
