@@ -90,6 +90,9 @@ class _$ResourceStateCopyWithImpl<T, $Res, $Val extends ResourceState<T>>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ResourceState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -109,6 +112,8 @@ class __$$ResourceLoadingImplCopyWithImpl<T, $Res>
       $Res Function(_$ResourceLoadingImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResourceState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,7 +153,9 @@ class _$ResourceLoadingImpl<T> implements ResourceLoading<T> {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResourceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResourceLoadingImplCopyWith<T, _$ResourceLoadingImpl<T>> get copyWith =>
@@ -240,7 +247,10 @@ abstract class ResourceLoading<T> implements ResourceState<T> {
   const factory ResourceLoading([final T? data]) = _$ResourceLoadingImpl<T>;
 
   T? get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ResourceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResourceLoadingImplCopyWith<T, _$ResourceLoadingImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -262,6 +272,8 @@ class __$$ResourceSuccessImplCopyWithImpl<T, $Res>
       $Res Function(_$ResourceSuccessImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResourceState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -317,7 +329,9 @@ class _$ResourceSuccessImpl<T> implements ResourceSuccess<T> {
   int get hashCode => Object.hash(
       runtimeType, code, message, const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResourceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResourceSuccessImplCopyWith<T, _$ResourceSuccessImpl<T>> get copyWith =>
@@ -414,7 +428,10 @@ abstract class ResourceSuccess<T> implements ResourceState<T> {
   String? get code;
   String? get message;
   T get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ResourceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResourceSuccessImplCopyWith<T, _$ResourceSuccessImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -436,6 +453,8 @@ class __$$ResourceErrorImplCopyWithImpl<T, $Res>
       $Res Function(_$ResourceErrorImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResourceState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -501,7 +520,9 @@ class _$ResourceErrorImpl<T> implements ResourceError<T> {
   int get hashCode => Object.hash(runtimeType, code, message, stacktrace,
       const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResourceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResourceErrorImplCopyWith<T, _$ResourceErrorImpl<T>> get copyWith =>
@@ -600,7 +621,10 @@ abstract class ResourceError<T> implements ResourceState<T> {
   String? get message;
   String? get stacktrace;
   T? get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ResourceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResourceErrorImplCopyWith<T, _$ResourceErrorImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -619,6 +643,9 @@ class __$$ResourceInitialImplCopyWithImpl<T, $Res>
   __$$ResourceInitialImplCopyWithImpl(_$ResourceInitialImpl<T> _value,
       $Res Function(_$ResourceInitialImpl<T>) _then)
       : super(_value, _then);
+
+  /// Create a copy of ResourceState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
